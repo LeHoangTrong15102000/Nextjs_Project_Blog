@@ -58,3 +58,9 @@
     -> Sẽ hướng dẫn lấy nó cũng như điều khác biệt của nó là gì
     -> `getStaticProps` dùng đẻ render ra các trang HTML tính trong lúc build -> hiểu nôm na là sau khi build nó không có thay đổi theo thời gian
     -> `getServerSideProps` Tạo ra cái props và render ra các trang HTML tĩnh trong thời gian chạy cái website (run-time) -> hiểu nôm na là nó sẽ có thay đổi theo các thao tác của người dùng
+
+- -> Thằng `getServerSideProp` là một function có sẵn trong Nextjs rồi -> Và thằng này là một async function -> Nếu nó lỗi là tại vì nó chưa return về một cái function gì trong đó hết -> Phải return về một cái propments
+- -> Thì cái function này nó trả về cho mình thì mình muốn những cái như là `title`, `command`
+- -> Trong cái dự liệu trả về tì chúng ta cần cái labels in ra những cái nhãn `labels` chúng ta cần để in ra -> Do sử dụng typescript nên cần tạo một cái `type` để có thể handle được dễ hơn
+- -> `author` là một cái object trong đó có chứa {url , login, avatarUrl}
+- -> Bây giờ chúng ta đã có thằng `posts` này rồi và có những thứ mà chúng ta cần rồi, thì bây giờ chúng ta sẽ tạo 1 cái type riêng cho nó

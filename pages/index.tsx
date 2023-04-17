@@ -1,3 +1,6 @@
+import { GetServerSideProps } from 'next'
+import { getBlogs } from '../server/blogs'
+
 export default function Home() {
   // Đây là trang index.html trong Reactjs
   return (
@@ -12,4 +15,11 @@ export default function Home() {
       </section>
     </main>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  let blogs = getBlogs()
+  return {
+    props: {}
+  }
 }
