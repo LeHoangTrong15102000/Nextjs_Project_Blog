@@ -1,3 +1,4 @@
+import { BlogPost } from '../types/blog'
 import { discussionGql } from './gql'
 
 // Thằng này nó sẽ chịu trách nhiệm gọi cái thằng query gql này và sẽ lấy cái Api cho mình
@@ -5,8 +6,8 @@ const API_URL = 'https://api.github.com/graphql'
 const GH_ACCESS_TOKEN = process.env.GH_ACCESS_TOKEN
 const DISCUSSION_CATEGORY_ID = process.env.DISCUSSION_CATEGORY_ID
 
-// Lấy các bài Blog từ github Api về, cái function này sẽ return về một cái posts
-export async function getBlogs() {
+// Lấy các bài Blog từ github Api về, cái function này sẽ return về một cái Promise(resolve, reject) và kiểu dữ liệu trả về là một BlogPost[]
+export async function getBlogs(): Promise<BlogPost[]> {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -20,7 +21,8 @@ export async function getBlogs() {
   let res = await response.json()
   // Lưu những thứ mà graphQL github trả về lưu vào một biến
   const discussions = res.data.repository.discussions.nodes
-  const posts = discussions.map((discussion: any) => {
+  // giá trị trả về là một blogPost
+  const posts = discussions.map((discussion: any): BlogPost => {
     // bóc tách phần tử ra
     const {
       title,

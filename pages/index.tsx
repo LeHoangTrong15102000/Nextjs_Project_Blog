@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { getBlogs } from '../server/blogs'
+import { BlogPost } from '../types/blog'
 
 export default function Home() {
   // Đây là trang index.html trong Reactjs
@@ -18,7 +19,7 @@ export default function Home() {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  let blogs = getBlogs()
+  let blogs: BlogPost[] = await getBlogs() // Do giá trị trả về là một promise nên phải await
   return {
     props: {}
   }

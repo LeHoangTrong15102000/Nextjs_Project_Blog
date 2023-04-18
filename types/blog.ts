@@ -11,6 +11,6 @@ export interface BlogPost {
   author: {
     name: string
     url: string
-    avatarUrl: string
+    avatar: string
   }
 }
