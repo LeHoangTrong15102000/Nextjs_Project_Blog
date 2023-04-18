@@ -67,3 +67,9 @@
 - -> Chúng ta thắc mắc là bây giờ chúng ta sẽ lấy nó ra như thế nào -> thì chúng ta sẽ lấy nó ra như sau
 - -> Home: NextPage = ({blogData}) -> Nó báo lỗi nên phải dùng `type` của GetServerSideProps
 - -> Tạo 1 cái type cho cái blogPreview của chúng ta
+- -> Bọc cái thẻ đó xung quanh để khi mà chúng ta nhấn vào thì nó sẽ redirect chúng ta đi đâu đó -> Sử dụng thẻ `a` -> thêm `noreferrer` để dùng cho vấn đề bảo mật
+- -> một hồi chúng ta sẽ tìm hiểu cái thằng `id` trong `nextjs` nó sẽ handle việc này như thế nào để nó có thể render được từng `blogpost` luôn -> Trước hết khi mà nhấn vào thì ta sẽ cho nó hiện cái URl riêng biệt với cái `id` của từng `blogPost`
+- -> Quay trở lại với blogPreview bây giờ chúng ta muốn `render` cái tags ra bên ngoài -> khi mà sử dụng thẻ /img thì nó sẽ cảnh báo chúng ta và khuyên chúng ta nên dùng thẻ <Image /> được import từ 'next/image'
+- -> để ngày tháng nó hiện rõ thì trong cái phương thức `toLocaleDateString()` nhận vào một cái object -> // Để biết type của thằng options trong toLocaleDateString() thì chỉ cần search gg là sẽ có người chỉ: options: Intl.DateTimeFormatOptions
+- -> Mình không muốn lấy một cái tags mà mình muốn lấy tất cả các cái `tags` của các blogPost -> Cái phần tags trên trang web là tập hợp tất cả các cái tags của -> Để làm được việc như vậy thì chúng ta cần lập qua từng `tags` của từng bài `blogPost` -> Array dùng phương thức include sẽ trả về một giá trị boolean là true hoặc là false
+- -> Sau khi lấy được array tags bây giờ chúng ta có thể render đóng tags này ra
