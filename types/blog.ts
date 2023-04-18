@@ -7,7 +7,7 @@ export interface BlogPost {
   bodyText: string // bắt buộc phải có
   tags: string[]
   createdAt: string
-  lastEdited: string | null
+  lastEdited?: string | null
   author: {
     name: string
     url: string

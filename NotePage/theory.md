@@ -64,3 +64,6 @@
 - -> Trong cái dự liệu trả về tì chúng ta cần cái labels in ra những cái nhãn `labels` chúng ta cần để in ra -> Do sử dụng typescript nên cần tạo một cái `type` để có thể handle được dễ hơn
 - -> `author` là một cái object trong đó có chứa {url , login, avatarUrl}
 - -> Bây giờ chúng ta đã có thằng `posts` này rồi và có những thứ mà chúng ta cần rồi, thì bây giờ chúng ta sẽ tạo 1 cái type riêng cho nó
+- -> Chúng ta thắc mắc là bây giờ chúng ta sẽ lấy nó ra như thế nào -> thì chúng ta sẽ lấy nó ra như sau
+- -> Home: NextPage = ({blogData}) -> Nó báo lỗi nên phải dùng `type` của GetServerSideProps
+- -> Tạo 1 cái type cho cái blogPreview của chúng ta
