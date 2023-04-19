@@ -2,8 +2,34 @@ import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { getBlogs } from '../server/blogs'
 import { BlogPost } from '../types/blog'
 import BlogPreview from '../components/BlogPreview'
+import { useEffect, useMemo, useState } from 'react'
 
 const Home: NextPage = ({ blogData, tags }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  // là một string[] vì mỗi lần thêm từ vào thì arr nó sẽ thêm từ mới vào
+  const [filterWord, setFilterWord] = useState<string[]>([])
+  const [selectedIndex, setSelectedIndex] = useState<number[]>([])
+  const filteredBlog: BlogPost[] = useMemo(() => {
+    return filterWord.length > 0
+      ? blogData.filter((blog: BlogPost) => {
+          return filterWord.every((filter) => blog.tags.includes(filter)) // trả về những bài blog có chứa toàn bộ filterword
+          // Các giá trị trong filterWord đều = true thì sẽ return về true nghĩa là cái blog đó hợp lệ và sẽ in ra UI
+        })
+      : blogData
+  }, [filterWord])
+  const filterLabel = (tag: any, index: number) => {
+    if (selectedIndex.includes(index)) {
+      // selectedIndex chính là index sau mỗi lần lặp
+      setSelectedIndex(selectedIndex.filter((selectedId) => selectedId !== index))
+      setFilterWord(filterWord.filter((word) => word !== tag.innerText)) // innerText là chữ trong cái document, do ở dưới chúng ta lấy ra event.targer
+    } else {
+      setSelectedIndex([...selectedIndex, index])
+      setFilterWord([...filterWord, tag.innerText])
+    }
+  }
+  // Dùng useEffect() để kiểm tra thử là logic của chúng ta đúng hay không
+  // useEffect(() => {
+  //   console.log(selectedIndex)
+  // }, [selectedIndex])
   // Đây là trang index.html trong Reactjs
   return (
     // h-screen và w-screen muốn thằng main bao trùm hết màn hình
@@ -21,14 +47,22 @@ const Home: NextPage = ({ blogData, tags }: InferGetServerSidePropsType<typeof g
         <div className='mb-12 flex gap-3'>
           {tags.map((tag: string, index: number) => {
             return (
-              <button key={index} className='label transition-all duration-200 hover:bg-sky-400'>
+              <button
+                key={index}
+                className={`${
+                  selectedIndex.includes(index)
+                    ? 'selected-label transition-all duration-200 hover:bg-sky-400'
+                    : 'label transition-all duration-200 hover:bg-sky-400'
+                }`}
+                onClick={(event) => filterLabel(event.target, index)}
+              >
                 {tag}
               </button>
             )
           })}
         </div>
         {/* Blog content */}
-        {blogData.map((blog: BlogPost) => {
+        {filteredBlog.map((blog: BlogPost) => {
           return (
             <div
               key={blog.id}

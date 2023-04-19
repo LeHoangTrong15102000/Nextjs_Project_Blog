@@ -8,4 +8,7 @@
   .label {
     @apply mt-2 rounded-xl bg-sky-600 px-2 font-semibold text-zinc-800;
   }
+  .selected-label {
+    @apply mt-2 rounded-xl bg-sky-800 px-2 font-semibold text-neutral-300;
+  }
 }
