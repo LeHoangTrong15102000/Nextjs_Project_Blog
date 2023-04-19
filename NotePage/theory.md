@@ -78,3 +78,24 @@
 - -> Đã có selectedIndex rồi vậy làm sao thay đổi cái `style` của nó dựa trên `selectedIndex` đây
 - -> Sau khi đã có được logic `filterLabel` -> Thì chúng ta cũng sẽ thực hiện việc lọc `blogPost` theo `filterLabel[]` luôn -> Thì cái logic của nó cũng tương tự logic của thằng `filterLabel`
 - -> Sau khi đã `filter` được các giá trị array rồi thì tiếp mình phải làm sao để thực sự `filter` các bài `blogPost` -> sẽ tạo một cái biến là `filteredBlog` thì cái biến này sẽ chứa toàn bộ` blogPost` của mình và cả `blogPost` được lọc luôn -> Và chúng ta sẽ return về mộ cái `filterBlog` và render ra lai giao diện bằng cái biến `filterBlog`
+
+> Nhấn vào một bài blog và cách render ra bài blog đó bằng `id`
+
+- -> Phần cuối cùng sẽ tìm hiểu về cách render ra bài blog bằng cách sử dụng thư viện bên ngoài -> Và cách sử dụng `id` trong Nextjs và cách hoạt động `id` trong Nextjs
+- -> Thì ở trong Nextjs mỗi `file` trong page là một trang khác nhau -> Thì trang chủ chúng ta đặt là `index.tsx` -> Nếu chúng ta muốn tạo một trang sử dụng cho blog thì chúng ta phải tạo trang với folder là `blog` mỗi file trong bài blog đó là từng `blogId` khác nhau
+- -> Trong bài `blogDetail` thì chúng ta chỉ cần curry như này:
+
+  - -> repository(owner: "LeHoangTrong15102000", name: "Nextjs_Project_Blog") {
+    discussions(number: ${postId}) {  
+    title  
+    bodyHTML  
+    createdAt  
+    author {
+    login
+    url
+    avatarUrl
+    }  
+    }
+    }
+
+- -> Tương tự trong cái `blogServer` mình sẽ tạo cái function mới để mình có thể gọi api từ cái function đó trong cái file `id` của chúng ta -> Và chúng ta cũng sẽ tạo cái type riêng cho nó -> Tương tự như thằng `index.tsx` để mà gọi nó chúng ta sẽ sử dụng `getServerSideProps`

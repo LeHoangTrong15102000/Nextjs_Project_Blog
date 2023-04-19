@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { BlogPost } from '../types/blog'
+import { BlogPost } from '../types/blog.type'
 
 interface IHeaderProps {
   createdAt: string

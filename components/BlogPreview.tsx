@@ -1,5 +1,5 @@
 import React from 'react'
-import { BlogPost } from '../types/blog'
+import { BlogPost } from '../types/blog.type'
 import BlogHeader from './BlogHeader'
 
 // interface PropsType {

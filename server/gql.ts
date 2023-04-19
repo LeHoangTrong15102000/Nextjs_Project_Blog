@@ -27,3 +27,21 @@ export function discussionGql(ghDiscussionCategoryId: string | undefined) {
     }
   }`
 }
+
+// Tạo ra cái hàm lấy ra single Post -> Chỉ muốn lấy ra chi tiết 1 bài post
+export function discussionDetailGql(postId: number | undefined) {
+  return `{
+    repository(owner: "LeHoangTrong15102000", name: "Nextjs_Project_Blog") {
+      discussions(number: ${postId}) {  
+          title     
+          bodyHTML    
+          createdAt     
+          author {
+            login
+            url
+            avatarUrl
+          }       
+      }
+    }
+  }`
+}

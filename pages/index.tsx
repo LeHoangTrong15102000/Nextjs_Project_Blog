@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { getBlogs } from '../server/blogs'
-import { BlogPost } from '../types/blog'
+import { BlogPost } from '../types/blog.type'
 import BlogPreview from '../components/BlogPreview'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -98,7 +99,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   }
-  console.log(tags)
+  // console.log(tags)
   return {
     props: {
       blogData: blogs,

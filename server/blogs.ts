@@ -1,5 +1,5 @@
-import { BlogPost } from '../types/blog'
-import { discussionGql } from './gql'
+import { BlogDetail, BlogPost } from '../types/blog.type'
+import { discussionDetailGql, discussionGql } from './gql'
 
 // Thằng này nó sẽ chịu trách nhiệm gọi cái thằng query gql này và sẽ lấy cái Api cho mình
 const API_URL = 'https://api.github.com/graphql'
@@ -64,4 +64,40 @@ export async function getBlogs(): Promise<BlogPost[]> {
     return post
   })
   return posts
+}
+
+// Tạo ra cái function mới để gọi getBlogDetail
+export async function getBlogDetail(blogId: number) {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      // sẽ bao gồm 2 cái
+      Authorization: `token ${GH_ACCESS_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    // biến kiểu objec thành kiểu JSON
+    body: JSON.stringify({ query: discussionDetailGql(blogId) }) // gửi lên cái object có key là `query`
+  })
+  let res = await response.json()
+  // console.log(res.data.repository)
+  let discussion = res.data.repository.discussion
+  const {
+    author: { url: authorUrl, login: authorName, avatarUrl: authorAvatar },
+    createdAt,
+    title: title,
+    bodyHTML: html
+  } = discussion
+  // object chứa các biến của detailBlog
+  const detail = {
+    author: {
+      url: authorUrl,
+      name: authorName,
+      avatar: authorAvatar
+    },
+    createdAt,
+    title,
+    bodyHTML: html
+  }
+  // do chỉ lấy ra blogDetail nên chúng ta không cần lặp
+  return detail
 }
