@@ -32,15 +32,15 @@ export function discussionGql(ghDiscussionCategoryId: string | undefined) {
 export function discussionDetailGql(postId: number | undefined) {
   return `{
     repository(owner: "LeHoangTrong15102000", name: "Nextjs_Project_Blog") {
-      discussions(number: ${postId}) {  
-          title     
-          bodyHTML    
-          createdAt     
-          author {
-            login
-            url
-            avatarUrl
-          }       
+      discussion(number: ${postId}) {
+        title
+        bodyHTML
+        createdAt
+        author {
+          login
+          url
+          avatarUrl
+        }
       }
     }
   }`

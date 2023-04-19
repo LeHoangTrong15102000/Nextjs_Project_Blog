@@ -21,7 +21,7 @@ export interface BlogDetail {
   createdAt: string
   author: {
     name: string
-    url: string
     avatar: string
+    url: string
   }
 }

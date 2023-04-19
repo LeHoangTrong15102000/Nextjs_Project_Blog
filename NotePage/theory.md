@@ -98,4 +98,4 @@
     }
     }
 
-- -> Tương tự trong cái `blogServer` mình sẽ tạo cái function mới để mình có thể gọi api từ cái function đó trong cái file `id` của chúng ta -> Và chúng ta cũng sẽ tạo cái type riêng cho nó -> Tương tự như thằng `index.tsx` để mà gọi nó chúng ta sẽ sử dụng `getServerSideProps`
+- -> Tương tự trong cái `blogServer` mình sẽ tạo cái function mới để mình có thể gọi api từ cái function đó trong cái file `id` của chúng ta -> Và chúng ta cũng sẽ tạo cái type riêng cho nó -> Tương tự như thằng `index.tsx` để mà gọi nó chúng ta sẽ sử dụng `getServerSideProps` -> Tại vì query của thằng `githubGql` chỉ nhận vào `number` thôi mà thằng `queryRoute` trên thành url nó lại trả về kiểu dữ liệu là `string` nên chúng ta sẽ gán lại kiểu dữ liệu cho nó

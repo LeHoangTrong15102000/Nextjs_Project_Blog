@@ -67,19 +67,18 @@ export async function getBlogs(): Promise<BlogPost[]> {
 }
 
 // Tạo ra cái function mới để gọi getBlogDetail
-export async function getBlogDetail(blogId: number) {
+
+export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
-      // sẽ bao gồm 2 cái
       Authorization: `token ${GH_ACCESS_TOKEN}`,
       'Content-Type': 'application/json'
     },
-    // biến kiểu objec thành kiểu JSON
-    body: JSON.stringify({ query: discussionDetailGql(blogId) }) // gửi lên cái object có key là `query`
+    body: JSON.stringify({ query: discussionDetailGql(blogId) })
   })
   let res = await response.json()
-  // console.log(res.data.repository)
+  console.log(res)
   let discussion = res.data.repository.discussion
   const {
     author: { url: authorUrl, login: authorName, avatarUrl: authorAvatar },
@@ -87,17 +86,11 @@ export async function getBlogDetail(blogId: number) {
     title: title,
     bodyHTML: html
   } = discussion
-  // object chứa các biến của detailBlog
   const detail = {
-    author: {
-      url: authorUrl,
-      name: authorName,
-      avatar: authorAvatar
-    },
+    author: { url: authorUrl, name: authorName, avatar: authorAvatar },
     createdAt,
     title,
     bodyHTML: html
   }
-  // do chỉ lấy ra blogDetail nên chúng ta không cần lặp
   return detail
 }
